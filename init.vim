@@ -1,28 +1,35 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-call vundle#begin('~/.config/nvim/bundle')
+call plug#begin('~/.config/nvim/plugged')
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'scrooloose/nerdtree'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'bling/vim-airline'
-Bundle 'altercation/vim-colors-solarized'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'morhetz/gruvbox'
-Plugin 'tpope/vim-db'
-Plugin 'diepm/vim-rest-console'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'zchee/deoplete-clang'
-Plugin 'zchee/deoplete-jedi'
-Plugin 'christoomey/vim-tmux-navigator'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'bling/vim-airline'
+Plug 'altercation/vim-colors-solarized'
+Plug 'airblade/vim-gitgutter'
+Plug 'morhetz/gruvbox'
+Plug 'tpope/vim-db'
+Plug 'diepm/vim-rest-console'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'zchee/deoplete-clang'
+Plug 'zchee/deoplete-jedi'
+Plug 'christoomey/vim-tmux-navigator'
+
+call plug#end()
 
 " After all plugins...
-call vundle#end()
 filetype plugin indent on
 
 let g:tmux_navigator_no_mappings = 1
@@ -166,4 +173,7 @@ map <C-n> :NERDTreeToggle<CR>
 "" TODOs
 "noremap <Leader>t :noautocmd vimgrep /TODO/j **/* <CR>:cw<CR>
 "
+" Configure flow for JavaScript
+let g:flow#showquickfix = 0
+
 set exrc
