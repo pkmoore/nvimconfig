@@ -14,18 +14,21 @@ Plug 'airblade/vim-gitgutter'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-db'
 Plug 'diepm/vim-rest-console'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'zchee/deoplete-clang'
-Plug 'zchee/deoplete-jedi'
+Plug 'Yggdroot/indentLine'
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+"Plug 'Shougo/neosnippet'
+"Plug 'Shougo/neosnippet-snippets'
+"Plug 'zchee/deoplete-clang'
+"Plug 'zchee/deoplete-jedi'
 Plug 'christoomey/vim-tmux-navigator'
+"Plug 'w0rp/ale'
+Plug 'janko-m/vim-test'
 
 call plug#end()
 
@@ -176,4 +179,4 @@ map <C-n> :NERDTreeToggle<CR>
 " Configure flow for JavaScript
 let g:flow#showquickfix = 0
 
-set exrc
+autocmd BufNewFile,BufRead ~/rrapper/* let g:ale_python_pylint_options="--extension-pkg-whitelist=syscallreplay"
