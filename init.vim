@@ -14,6 +14,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-db'
 Plug 'diepm/vim-rest-console'
+Plug 'Yggdroot/indentLine'
 "if has('nvim')
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "else
@@ -26,6 +27,8 @@ Plug 'diepm/vim-rest-console'
 "Plug 'zchee/deoplete-clang'
 "Plug 'zchee/deoplete-jedi'
 Plug 'christoomey/vim-tmux-navigator'
+"Plug 'w0rp/ale'
+Plug 'janko-m/vim-test'
 
 call plug#end()
 
