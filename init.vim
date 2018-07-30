@@ -14,17 +14,17 @@ Plug 'airblade/vim-gitgutter'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-db'
 Plug 'diepm/vim-rest-console'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'zchee/deoplete-clang'
-Plug 'zchee/deoplete-jedi'
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+"Plug 'Shougo/neosnippet'
+"Plug 'Shougo/neosnippet-snippets'
+"Plug 'zchee/deoplete-clang'
+"Plug 'zchee/deoplete-jedi'
 Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
@@ -39,11 +39,11 @@ nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <M-\\> :TmuxNavigatePrevious<cr>
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-5.0/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-5.0/lib/clang'
+"" Use deoplete.
+"let g:deoplete#enable_at_startup = 1
+"
+"let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-5.0/lib/libclang.so'
+"let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-5.0/lib/clang'
 
 "Gitgutter update time
 set updatetime=100
@@ -169,11 +169,3 @@ autocmd InsertLeave * :set relativenumber
 
 " Nerd tree
 map <C-n> :NERDTreeToggle<CR>
-
-"" TODOs
-"noremap <Leader>t :noautocmd vimgrep /TODO/j **/* <CR>:cw<CR>
-"
-" Configure flow for JavaScript
-let g:flow#showquickfix = 0
-
-set exrc
