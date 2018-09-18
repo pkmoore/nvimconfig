@@ -162,6 +162,7 @@ tnoremap <Esc> <C-\><C-n>
 " Smart relative line numbers
 " Display absolute numbers when we lose focus
 set number
+set relativenumber
 autocmd FocusLost * :set norelativenumber
 "Display relative numbers when we gain focus
 autocmd FocusGained * :set relativenumber
