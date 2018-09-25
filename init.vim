@@ -15,6 +15,7 @@ Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-db'
 Plug 'diepm/vim-rest-console'
 Plug 'Yggdroot/indentLine'
+Plug 'crusoexia/vim-monokai'
 "if has('nvim')
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "else
@@ -78,7 +79,7 @@ set background=dark
 "let g:solarized_visibility="high"    "default value is normal
 "let g:solarized_diffmode="high"    "default value is normal
 "let g:solarized_hitrail=1    "default value is 0
-colorscheme gruvbox
+colorscheme monokai
 
 " vim-airline configuration
 "Enable vim-airline all the time
