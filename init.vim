@@ -16,6 +16,8 @@ Plug 'tpope/vim-db'
 Plug 'diepm/vim-rest-console'
 Plug 'Yggdroot/indentLine'
 Plug 'crusoexia/vim-monokai'
+Plug 'roxma/vim-tmux-clipboard'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 "if has('nvim')
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "else
@@ -147,6 +149,7 @@ hi SpellLocal cterm=underline,bold ctermbg=0 ctermfg=green
 "File specific settings
 autocmd FileType make setlocal noexpandtab
 autocmd FileType gitcommit,hgcommit,text,svn,tex,plaintex setlocal spell spelllang=en_us
+autocmd FileType python setlocal shiftwidth=2 tabstop=2 nowrap textwidth=0 cc=75
 
 " CtrlP Options
 let g:ctrlp_working_path_mode = ''
