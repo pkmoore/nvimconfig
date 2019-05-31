@@ -81,7 +81,7 @@ set background=dark
 "let g:solarized_visibility="high"    "default value is normal
 "let g:solarized_diffmode="high"    "default value is normal
 "let g:solarized_hitrail=1    "default value is 0
-colorscheme monokai
+colorscheme gruvbox
 
 " vim-airline configuration
 "Enable vim-airline all the time
@@ -127,6 +127,10 @@ set cc=80
 "wrap plain text at 120 columns
 set textwidth=80
 
+"Don't conceal stuff
+let g:tex_conceal = ''
+set conceallevel=0
+
 "show information about current command in the screen's last line
 set showcmd
 
@@ -150,6 +154,8 @@ hi SpellLocal cterm=underline,bold ctermbg=0 ctermfg=green
 autocmd FileType make setlocal noexpandtab
 autocmd FileType gitcommit,hgcommit,text,svn,tex,plaintex setlocal spell spelllang=en_us
 autocmd FileType python setlocal shiftwidth=2 tabstop=2 nowrap textwidth=0 cc=75
+
+autocmd FileType tex,markdown setlocal cc=75 textwidth=75
 
 " CtrlP Options
 let g:ctrlp_working_path_mode = ''
