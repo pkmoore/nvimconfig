@@ -107,7 +107,7 @@ set smarttab
 set tabstop=4
 
 "number of spaces to use for each instance of autoindent (cindent, << and >>)
-set shiftwidth=4
+set shiftwidth=2
 
 "hilight everything that matches a search even if it isn't the current result
 set hlsearch
