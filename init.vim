@@ -5,7 +5,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rust-lang/rust.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'bling/vim-airline'
@@ -18,19 +17,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'crusoexia/vim-monokai'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-"  Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-"Plug 'Shougo/neosnippet'
-"Plug 'Shougo/neosnippet-snippets'
-"Plug 'zchee/deoplete-clang'
-"Plug 'zchee/deoplete-jedi'
 Plug 'christoomey/vim-tmux-navigator'
-"Plug 'w0rp/ale'
 Plug 'janko-m/vim-test'
 
 call plug#end()
@@ -38,18 +25,23 @@ call plug#end()
 " After all plugins...
 filetype plugin indent on
 
+if has('wsl')
+  set clipboard^=unnamed,unnamedplus
+  let s:clip = '/mnt/c/Windows/System32/clip.exe'
+  if executable(s:clip)
+      augroup WSLYank
+          autocmd!
+          autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
+      augroup END
+  end
+endif
+
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <M-\\> :TmuxNavigatePrevious<cr>
-
-"" Use deoplete.
-"let g:deoplete#enable_at_startup = 1
-"
-"let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-5.0/lib/libclang.so'
-"let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm-5.0/lib/clang'
 
 "Gitgutter update time
 set updatetime=100
@@ -73,14 +65,6 @@ syntax on
 "
 "set a colorscheme
 set background=dark
-"colorscheme solarized
-"let g:solarized_bold = 1
-"let g:solarized_italic = 1
-"let g:solarized_underline = 1
-"let g:solarized_contrast="high"    "default value is normal
-"let g:solarized_visibility="high"    "default value is normal
-"let g:solarized_diffmode="high"    "default value is normal
-"let g:solarized_hitrail=1    "default value is 0
 colorscheme gruvbox
 
 " vim-airline configuration
@@ -160,9 +144,6 @@ autocmd FileType tex,markdown setlocal cc=75 textwidth=75
 " CtrlP Options
 let g:ctrlp_working_path_mode = ''
 
-" Nerdtree shortcut
-map <silent> <C-n> :NERDTreeToggle<CR>
-
 " GitGutter
 set signcolumn=yes
 
@@ -180,6 +161,3 @@ autocmd FocusGained * :set relativenumber
 autocmd InsertEnter * :set norelativenumber
 " Display relative numbers when we leave insert mode
 autocmd InsertLeave * :set relativenumber
-
-" Nerd tree
-map <C-n> :NERDTreeToggle<CR>
