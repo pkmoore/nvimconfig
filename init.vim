@@ -25,14 +25,21 @@ call plug#end()
 " After all plugins...
 filetype plugin indent on
 
+set clipboard^=unnamed,unnamedplus
 if has('wsl')
-  set clipboard^=unnamed,unnamedplus
   let s:clip = '/mnt/c/Windows/System32/clip.exe'
   if executable(s:clip)
       augroup WSLYank
           autocmd!
           autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
       augroup END
+  end
+elseif has('mac')
+  let s:clip = 'pbcopy'
+  if executable(s:clip)
+    augroup MacYank
+      autocmd!
+      autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
   end
 endif
 
