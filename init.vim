@@ -15,6 +15,8 @@ Plug 'tpope/vim-db'
 Plug 'diepm/vim-rest-console'
 Plug 'Yggdroot/indentLine'
 Plug 'crusoexia/vim-monokai'
+" This plugin passes yanked stuff into tmux's clipboard but NOT the system
+" clipboard
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
@@ -26,22 +28,27 @@ call plug#end()
 filetype plugin indent on
 
 set clipboard^=unnamed,unnamedplus
-if has('wsl')
-  let s:clip = '/mnt/c/Windows/System32/clip.exe'
-  if executable(s:clip)
-      augroup WSLYank
-          autocmd!
-          autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
-      augroup END
-  end
-elseif has('mac')
+" If we have clip, we must be on windows, so use clip to populate the system
+" clipboard on yank
+let s:win_clip = '/mnt/c/Windows/System32/clip.exe'
+let s:mac_clip = 'pbcopy'
+if executable(s:win_clip)
+    augroup WSLYank
+        autocmd!
+        autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:win_clip)
+    augroup END
+elseif executable(s:mac_clip)
   let s:clip = 'pbcopy'
   if executable(s:clip)
     augroup MacYank
       autocmd!
-      autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
+      autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:mac_clip)
   end
 endif
+
+
+
+
 
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
